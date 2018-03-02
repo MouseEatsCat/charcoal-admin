@@ -5,7 +5,7 @@
     @used-by `charcoal/admin/widget/form-group-widget`
 --}}
 {{!-- Loop form properties (typically `FormPropertyWidget`) --}}
-{{# formProperties }}
+{{# walk }}
     {{# layout }}
         {{ start }}
         {{# cellStartsRow }}
@@ -16,7 +16,9 @@
     {{/ layout }}
 
             <div class="col-md-{{ layout.cellSpanBy12 }}">
+                {{# formProperty }}
                 {{> charcoal/admin/widget/form-property-widget }}
+                {{/ formProperty }}
             </div>
 
     {{# layout }}
@@ -28,4 +30,4 @@
         {{!-- Hack: Execute end layout --}}
         {{ end }}
     {{/ layout }}
-{{/ formProperties }}
+{{/ walk }}

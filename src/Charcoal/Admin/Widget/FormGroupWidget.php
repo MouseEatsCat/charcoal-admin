@@ -147,6 +147,14 @@ class FormGroupWidget extends AbstractUiItem implements
     }
 
     /**
+     * @return integer
+     */
+    public function numGroupProperties()
+    {
+        return count($this->groupProperties);
+    }
+
+    /**
      * @param array $properties The options to customize the group properties.
      * @return FormGroupWidget Chainable
      */
@@ -219,6 +227,25 @@ class FormGroupWidget extends AbstractUiItem implements
                     $formProperty->clearFormGroup();
                 }
             }
+        }
+    }
+
+    /**
+     * Iterate through each cell in the layout to build the grid.
+     *
+     * @param  callable $callback A routine to apply to every cell of the layout.
+     * @return Generator
+     */
+    public function walk(callable $callback = null)
+    {
+        $layout   = $this->layout();
+        $numCells = max($layout->numCellsTotal(), $this->numGroupProperties());
+
+        for ($i = 0; $i < $numCells; $i++) {
+            yield [
+                'layout'       => $layout,
+                'formProperty' => $formProperty,
+            ];
         }
     }
 
