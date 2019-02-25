@@ -3920,7 +3920,7 @@ Charcoal.Admin.Widget_Form.prototype.switch_language = function (lang) {
  *
  * Require:
  * - jQuery
- * - echarts {@link }
+ * - echarts {@link https://ecomfe.github.io/echarts-doc/public/en/api.html#echarts}
  *
  * @param  {Object}  opts Options for widget
  */
@@ -3949,6 +3949,14 @@ Graph.prototype.init = function () {
     $(window).on('resize', function () {
         chart.resize();
     });
+
+    this.chart = chart;
+};
+
+Graph.prototype.destroy = function () {
+    if (this.chart) {
+        this.chart.dispose();
+    }
 };
 
 Graph.prototype.echartsOptions = function () {

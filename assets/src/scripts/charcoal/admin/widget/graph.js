@@ -34,6 +34,14 @@ Graph.prototype.init = function () {
     $(window).on('resize', function () {
         chart.resize();
     });
+
+    this.chart = chart;
+};
+
+Graph.prototype.destroy = function () {
+    if (this.chart) {
+        this.chart.dispose();
+    }
 };
 
 Graph.prototype.echartsOptions = function () {
